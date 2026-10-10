@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #080A09;
+    --bg-surface: #111512;
+    --emerald: #35D07F;
+    --warm-white: #F5F4EE;
+    --muted: #929A94;
+    --border: #272E29;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: #080A09;
+    color: #F5F4EE;
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.5;
+    min-height: 100dvh;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #111512; }
+  ::-webkit-scrollbar-thumb { background: #272E29; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #35D07F44; }
+
+  ::selection { background: #35D07F33; color: #F5F4EE; }
+
+  :focus-visible { outline: 2px solid #35D07F; outline-offset: 2px; }
+}
+
+@layer components {
+  .verity-card {
+    @apply bg-bg-surface border border-border rounded-xl shadow-inner-dark;
+  }
+  .verity-card-elevated {
+    @apply bg-bg-elevated border border-border-subtle rounded-xl shadow-inner-dark;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5
+           bg-emerald text-bg font-medium text-sm rounded-lg
+           hover:bg-emerald/90 active:bg-emerald/80
+           transition-all duration-150
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5
+           bg-transparent border border-border text-warm-white font-medium text-sm rounded-lg
+           hover:border-border-highlight hover:bg-bg-elevated
+           transition-all duration-150
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-2
+           text-warm-muted text-sm rounded-lg
+           hover:text-warm-white hover:bg-bg-elevated
+           transition-all duration-150
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5
+           bg-status-revoked/10 border border-status-revoked/30 text-status-revoked font-medium text-sm rounded-lg
+           hover:bg-status-revoked/20
+           transition-all duration-150
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .input-field {
+    @apply w-full bg-bg-elevated border border-border rounded-lg px-3.5 py-2.5
+           text-warm-white text-sm placeholder:text-warm-faint
+           focus:outline-none focus:border-emerald/60 focus:ring-1 focus:ring-emerald/20
+           transition-all duration-150;
+  }
+  .label-text {
+    @apply block text-xs font-medium text-warm-muted mb-1.5 uppercase tracking-wide;
+  }
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+  .status-valid   { @apply bg-status-valid/10   text-status-valid   border border-status-valid/20; }
+  .status-revoked { @apply bg-status-revoked/10 text-status-revoked border border-status-revoked/20; }
+  .status-expired { @apply bg-status-expired/10 text-status-expired border border-status-expired/20; }
+  .status-suspended { @apply bg-status-suspended/10 text-status-suspended border border-status-suspended/20; }
+  .status-invalid { @apply bg-status-invalid/10 text-status-invalid border border-status-invalid/20; }
+  .page-container { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+  .section-title  { @apply text-xl font-semibold text-warm-white tracking-tight; }
+  .mono           { @apply font-mono text-emerald; }
+  .data-table     { @apply w-full border-collapse; }
+  .data-table th  { @apply px-4 py-3 text-left text-2xs font-semibold text-warm-muted uppercase tracking-wider border-b border-border; }
+  .data-table td  { @apply px-4 py-3.5 text-sm text-warm-white border-b border-border/50; }
+  .data-table tr:hover td { @apply bg-bg-elevated/50; }
+  .shimmer        { @apply animate-pulse bg-bg-elevated rounded; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
